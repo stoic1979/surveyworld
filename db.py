@@ -26,7 +26,7 @@ class Mdb:
         conn_str = "mongodb://surveyworlduser:surveyworldpass@ds115436.mlab.com:15436/surveyworld"
         client = MongoClient(conn_str)
         # self.db = client['heroku_188g0kct']
-        self.db = client['survey_world'] # local db
+        self.db = client['surveyworld'] # local db
 
 #############################################
 #                                           #
