@@ -217,7 +217,7 @@ def add_user():
 
         check = mdb.check_email(email)
         if check:
-            print"This Email Already Used"
+            # print"This Email Already Used"
             templateData = {'title': 'Signup Page'}
             return render_template('user/signup.html', **templateData)
 
