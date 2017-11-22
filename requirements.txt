@@ -30,7 +30,6 @@ httplib2==0.10.3
 idna==2.5
 ipaddress==1.0.18
 itsdangerous==0.24
-Jinja==1.2
 Jinja2==2.9.6
 jsonify==0.5
 jwt==0.5.2
