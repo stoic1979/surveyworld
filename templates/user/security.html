@@ -1,0 +1,33 @@
+{% extends "user/user_base.html" %}
+{% block title %}Work Page{% endblock %}
+{% block head %}
+  {{ super() }}
+
+{% endblock %}
+{% block content %}
+
+<p class="important">
+<div class="container">
+    <center>
+        <div class="panel panel-info">
+            <div class="panel-heading">Forgot Password</div>
+                <div class="panel-body panel-resizable">
+                    <div class="account-wall"></br></br>
+                        <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                                alt="">
+                        <form class="form-signin" action="/user/security_answer" method="post">
+                            <center><p style="color:black; text-align: center;">Q. :   {{ question }}?</p></center>
+                            <input type="hidden" class="form-control"name="email" value="{{ email }}"><br>
+                            <input type="hidden" class="form-control"  name="question" value="{{ question }}" ><br>
+                            <input type="text" class="form-control" placeholder="Security Question Answer" style="text-align: center"  name="answer" required autofocus ><br>
+                            <button class="btn waves-effect waves-light" type="submit" name="action">Submit <i class="material-icons right">send</i></button>
+                        </form>
+                    </div>
+                </div>
+        </div>
+    </center>
+</div>
+
+
+{% endblock %}
+

@@ -1,0 +1,42 @@
+{% extends "user/user_base.html" %}
+{% block title %}Work Page{% endblock %}
+{% block head %}
+  {{ super() }}
+
+{% endblock %}
+{% block content %}
+
+
+<p class="important">
+
+{% if session['email'] %}
+    <center>
+<div class="container">
+    <div class="panel panel-info">
+
+
+    <!--stat-->
+
+        <div class="panel-heading">SUCCESS</div>
+            <div class="panel-body panel-resizable">
+
+            <br><br><br><br><br><br><br><br>
+                -- SAVE RESPONSE SUCCESSFULLY --
+                <br><br><br><br><br><br><br><br><br><br>
+
+            {% else %}
+
+
+<p style="color: red"> You still didn't set your Email, do it
+    <a href="{{ url_for('signin') }}">here</a></p>
+
+{% include 'user/session.html' %}
+{% endif %}
+            </div>
+        </div>
+    </div>
+</center>
+
+</p>
+
+{% endblock %}

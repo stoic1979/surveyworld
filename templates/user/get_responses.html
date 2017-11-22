@@ -1,0 +1,60 @@
+{% extends "user/user_base.html" %}
+{% block title %}Work Page{% endblock %}
+{% block head %}
+  {{ super() }}
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/table_style.css') }}">
+
+
+{% endblock %}
+{% block content %}
+
+<p class="important">
+  {% if session['name'] %}
+<center>
+<div class="container">
+    <div class="panel panel-info">
+        <div class="panel-heading">SEARCH SURVEY</div>
+            <div class="panel-body panel-resizable">
+                <br><br><br><br>
+
+            <form action="/user/search" method="post">
+                <input type="text" id="myInput" name="survey" style="text-align: center;" placeholder="Search for survey names.." required="">
+                 <br><button type="submit" class="btn btn-defalt">Search</button>
+            </form><br><br>
+
+            <table id="myTable">
+                <thead >
+                    <tr>
+                        <td>LIST OF SURVEY</td>
+                    </tr>
+                </thead>
+
+        {% for response in data %}
+                <tbody>
+                    <tr>
+                        <td  style="text-align: center;"><a href="/user/show_survey?id={{ response._id }}">
+                            <get_responses?id={{ response._id }}">{{ response.title}}
+                        </td>
+                    </tr>
+                </tbody>
+
+        {% endfor %}
+            </table>
+
+        {% else %}
+
+        <p style="color: red"> You still didn't set your Email, do it
+        <a href="{{ url_for('signin') }}">here</a></p>
+
+{% include 'user/session.html' %}
+{% endif %}
+
+            </div>
+        </div>
+    </div>
+</center>
+
+</p>
+
+{% endblock %}

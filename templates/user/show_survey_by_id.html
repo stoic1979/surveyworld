@@ -1,0 +1,197 @@
+{% extends "user/user_base.html" %}
+{% block title %}Work Page{% endblock %}
+{% block head %}
+  {{ super() }}
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/table_style.css') }}">
+
+{% endblock %}
+{% block content %}
+
+<p class="important">
+{% if session['name'] %}
+    <center>
+<div class="container">
+    <div class="panel panel-info">
+
+
+    <!--stat-->
+
+        <div class="panel-heading">RESULT OF SELECTED SURVEY</div>
+            <div class="panel-body panel-resizable">
+
+        <div class="container">
+
+            <!-------------------------------------- Modal ------------------------------------->
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Modal Header</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br><br><br>
+            <form action="/user/search_email" method="post">
+                <input type="text" id="myInput" name="email" style="text-align: center;" placeholder="Search for Email_id.." required="">
+                {% for response in responses %}
+                <input type="hidden" name="id" value="{{ response.survey_id}}">
+                {% endfor %}
+                <br><button type="submit" class="btn btn-defalt">Search</button>
+            </form><br><br><br><br>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th width="12%">Survey Title</th>
+                        <th width="12%">Time Stamp</th>
+                        <th width="12%">Email ID</th>
+                        <th  colspan="6" width="54%">Responses</th>
+                        <th width="10%">Edit</th>
+                    </tr>
+                </thead>
+
+                {% for response in responses %}
+                <tbody>
+                    <tr>
+                        <td width="12%"><get_responses?id={{ response._id }}">{{ response.title }}</td>
+                        <td width="12%"><get_responses?id={{ response._id }}">{{ response.timeStamp}}</td>
+                        <td width="12%"><get_responses?id={{ response._id }}">{{ response.Session_email}}</td>
+                        <!--<td width="12%"><get_responses?id={{ response._id }}">{{ response.survey_id}}</td>-->
+                        <td width="16%">
+                            <a href="{{ response.pdf }}" target="_blank">
+                                <get_responses?id={{ response._id }}">{{ response.pdf }}</td>
+                       <td width="16%">
+                           <a href="{{ response.img }}" target="_blank">
+                               <get_responses?id={{ response._id }}">{{ response.img }}</td>
+                       <td width="8%"><get_responses?id={{ response._id }}">{{ response.ques_description1 }}</td>
+                       <td width="8%"><get_responses?id={{ response._id }}">{{ response.ques_description2 }}</td>
+                       <td width="8%"><get_responses?id={{ response._id }}">{{ response.ques_description3 }}</td>
+                       <td width="8%"><get_responses?id={{ response._id }}">{{ response.ques_description4 }}</td>
+                       <td><button type="button" value="{{response._id}}" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Edit</button>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+
+
+        {% for response in responses %}
+
+        <div class="modal fade" id="exampleModal" value="{{response._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Edit of <b>{{ response.title }} </b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times </span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <form class="form-horizontal" action="/user/update_survey" mathod="post">
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Title:</label>
+                            <div class="col-sm-10">
+                                <input type="leble" class="form-control" value="{{ response.title }}" disabled/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Time:</label>
+                            <div class="col-sm-10">
+                                <input type="leble" class="form-control" value="{{ response.timeStamp }}" disabled/>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Email:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" value="{{ response.Session_email }}" disabled>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Picture:</label>
+                            <div class="col-sm-10">
+                                <input type="file" class="form-control"  value="{{ response.img }}" accept="image/*">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Pdf:</label>
+                            <div class="col-sm-10">
+                                <input type="file" class="form-control" value="{{ response.pdf }}" accept="application/pdf" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Response1:</label>
+                            <div class="col-sm-10">
+                                <input type="leble" class="form-control" value="{{ response.ques_description1 }}" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Response2:</label>
+                            <div class="col-sm-10">
+                                <input type="leble" class="form-control"  value="{{ response.ques_description2 }}" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Response3:</label>
+                            <div class="col-sm-10">
+                                <input type="leble" class="form-control" value="{{ response.ques_description3 }}" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-2">Response4:</label>
+                            <div class="col-sm-10">
+                                <input type="leble" class="form-control" value="{{ response.ques_description4 }}" >
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default"> Update</button>
+                                <!--<button type="submit" class="btn btn-default">Delete</button>-->
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+
+{% endfor %}
+</center>
+    </div>
+
+{% else %}
+<p style="color: red"> You still didn't set your Email, do it
+    <a href="{{ url_for('signin') }}">here</a></p>
+
+{% include 'user/session.html' %}
+
+{% endif %}
+            </div>
+        </div>
+    </div>
+
+</center>
+
+    </p>
+{% endblock %}

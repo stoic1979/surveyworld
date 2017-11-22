@@ -1,0 +1,86 @@
+{% extends "user/user_base.html" %}
+{% block title %}Work Page{% endblock %}
+{% block head %}
+  {{ super() }}
+<style>
+    table {
+    border: 2px solid white;
+    border-collapse: collapse;
+    width:60%;
+}
+
+table td {
+    border: 1px solid white;
+}
+
+table td.shrink {
+    white-space:nowrap
+}
+table td.expand {
+    width: 99%
+}
+</style>
+{% endblock %}
+{% block content %}
+<p class="important">
+
+<p class="important">
+    {% if session['name'] %}
+<center>
+<div class="container">
+    <div class="panel panel-info">
+        <div class="panel-heading">Survey Response</div>
+            <div class="panel-body panel-resizable">
+                <br><br><br><br>
+                <h3>Fill your response for the survey <b>'{{ survey.title }}'</b><br></h3><br><br><br><br>
+
+                <form method="post" action="/user/save_response" enctype="multipart/form-data"><br>
+                    <input type="hidden" style="text-align: center" value="{{ survey._id}}" name="survey_id">
+                    <input type="hidden" style="text-align: center" value="{{ survey.title }}" name="survey_title">
+                    <input type="hidden" style="text-align: center" value="{{ survey.rowCount}}" name="rowCount">
+                    <input type="hidden" style="text-align: center" value="{{ survey.rowCount}}" name="rowCount">
+                    <div class="container">
+                    <!--<table width="800" border="3" height="300">-->
+
+
+                     <table class="striped">
+                         {%  for i in range(survey.rowCount+1) %}
+                        {% if 'ques_id%s' % i in survey %}
+                        <tr>
+                            <th> {{ survey.get('ques_id%s' % i) }} </th>
+                            <td> <input type="text"  style="text-align: center" name="value{{ i }}" required=""></td>
+                        </tr>
+
+
+                    {% endif %}
+                    {% endfor %}
+                        <tr>
+                            <td><b>picture</b></td>
+                            <td><input type="file" name="pic" value="pic"  accept="image/*"></td>
+                        </tr>
+                        <tr>
+                            <td><b>pdf</b></td>
+                            <td><input type="file" name="pdf" value="pdf" accept="application/pdf" /></td>
+                        </tr>
+                     </table></br></br></br>
+
+                     <button class="btn waves-effect waves-light" type="submit" name="action">Submit <i class="material-icons right">send</i></button>
+                    </div>
+                </form>
+
+        {% else %}
+
+        <p style="color: red"> You still didn't set your Email, do it
+        <a href="{{ url_for('signin') }}">here</a></p>
+
+{% include 'user/session.html' %}
+{% endif %}
+
+            </div>
+        </div>
+    </div>
+</center>
+
+</p>
+
+{% endblock %}

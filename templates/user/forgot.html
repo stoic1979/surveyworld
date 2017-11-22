@@ -1,0 +1,34 @@
+{% extends "user/user_base.html" %}
+{% block title %}Work Page{% endblock %}
+{% block head %}
+  {{ super() }}
+
+{% endblock %}
+{% block content %}
+
+<p class="important">
+
+<div class="container">
+    <center>
+        <div class="panel panel-info">
+            <div class="panel-heading">Forgot Password</div>
+                <div class="panel-body panel-resizable">
+                    <div class="account-wall"></br></br>
+                        <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                                alt="">
+
+                        <form class="form-signin" action="/user/forgot_password" method="post"><br>
+                            <!--<input type="text" class="form-control" placeholder="Contact" style="text-align: center"  name="contact" required autofocus>-->
+                            <input type="email" class="form-control" placeholder="Email" style="text-align: center"  name="email" required autofocus ><br>
+                            <button class="btn waves-effect waves-light" type="submit" name="action">Submit <i class="material-icons right">send</i></button>
+                        </form>
+                     </div>
+
+                </div>
+        </div>
+    </center>
+</div>
+
+</p>
+{% endblock %}
+

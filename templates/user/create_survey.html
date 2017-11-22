@@ -1,0 +1,85 @@
+{% extends "user/user_base.html" %}
+{% block title %}Work Page{% endblock %}
+{% block head %}
+  {{ super() }}
+    <script>
+
+        var rowCount = 0;
+
+        function addMoreRows(frm) {
+            rowCount ++;
+
+            var recRow = '<p id="rowCount'+rowCount+'"><tr>';
+            recRow += '<td><input type="text" style="text-align: center" maxlength="120" id="key' + rowCount + '" name="key' + rowCount +'" placeholder="ques_id" required=""/></td>';
+            recRow += '<td><input type="text" style="text-align: center" maxlength="120" id="value' + rowCount + '" name="value' + rowCount +'" placeholder="ques_description" required=""/></td></tr>';
+
+	        recRow += '<td><select id="type' + rowCount + '" name="type' + rowCount +'"><option value="integer"  selected="selected">Integer</option>';
+            recRow += '<option value="string">String</option><option value="rang">Rang</option></select></td></tr>';
+
+            recRow += '&emsp;<a href="javascript:void(0);" onclick="removeRow('+rowCount+');">Delete</a></p>';
+            $('#addedRows').append(recRow);
+            $('#rowCount').val(""+rowCount);
+            }
+
+            function removeRow(removeNum) {
+                $('#rowCount'+removeNum).remove();
+            }
+
+    </script>
+<style>
+
+</style>
+{% endblock %}
+{% block content %}
+
+<p class="important">
+
+    {% if session['name'] %}
+
+        <center>
+<div class="container">
+    <div class="panel panel-info">
+
+
+    <!--stat-->
+
+        <div class="panel-heading">CREATE SURVEY</div>
+            <div class="panel-body panel-resizable">
+
+                <br><br><br><br>
+                <form action="/user/save_survey" method="post">
+
+
+                    <input type="hidden" name="rowCount" id="rowCount" value="0">
+
+
+                    <b>SURVEY TITLE :</b> <input type="text" required="" style=" text-transform: uppercase; text-align: center" name="title" id="title" placeholder="--- Please Enter Survey Title --- " size="40" /><br><br>
+
+                        Add Questions/Items of survey as follows :<br>
+
+                    <div id="addedRows"></div>
+                    <button type="button" class="btn btn-warning" onclick="addMoreRows(this.form);">ADD ITEM</button>
+                    <p><hr>Once you are done with survey creation, submit it to save ! <br>
+
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit<i class="material-icons right">send</i></button>
+
+</p>
+
+                </form><br>
+
+  {% else %}
+
+
+<p style="color: red"> You still didn't set your Email, do it
+    <a href="{{ url_for('signin') }}">here</a></p>
+
+{% include 'user/session.html' %}
+{% endif %}
+            </div>
+        </div>
+    </div>
+</center>
+
+</p>
+
+{% endblock %}

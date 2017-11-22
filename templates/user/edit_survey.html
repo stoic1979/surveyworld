@@ -1,0 +1,80 @@
+{% extends "user/user_base.html" %}
+{% block title %}Work Page{% endblock %}
+{% block head %}
+  {{ super() }}
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/table_style.css') }}">
+
+{% endblock %}
+{% block content %}
+
+<p class="important">
+{% if session['name'] %}
+<div id="login" class="span3 well well-large offset4">
+    <center>
+        <!--<p style="color:blue; ">SURVEY RESPONSES</p><br><br>-->
+        <h4>RESULT OF SELECTED SURVEY</h4><hr><br><br>
+        <div class="container">
+
+            <form action="/user/search_email" method="post">
+                <input type="text" id="myInput" name="email" style="text-align: center;" placeholder="Search for Email_id.." required="">
+                {% for response in responses %}
+                <input type="hidden" name="id" value="{{ response.survey_id}}">
+                {% endfor %}
+                <br><button type="submit" class="btn btn-defalt">Search</button>
+            </form><br><br>
+
+          <a href="#"><span class="glyphicon glyphicon-trash"></span></a>&ensp;
+            <a href="/user/edit_survey"><span class="glyphicon glyphicon-pencil"></span></a>&ensp;
+            <a href="/user/get_responses"><span class="glyphicon glyphicon-list-alt"></span></a>&ensp;
+
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th width="12%">Survey Title</th>
+                        <th width="12%">Time Stamp</th>
+                        <th width="12%">Email ID</th>
+                        <th  colspan="6" width="64%">Responses</th>
+                    </tr>
+                </thead>
+
+                {% for response in responses %}
+                <tbody>
+                    <tr>
+                        <td width="12%"><get_responses?id={{ response._id }}">{{ response.title }}</td>
+                        <td width="12%"><get_responses?id={{ response._id }}">{{ response.timeStamp}}</td>
+                        <td width="12%"><get_responses?id={{ response._id }}">{{ response.Session_email}}</td>
+                        <!--<td width="12%"><get_responses?id={{ response._id }}">{{ response.survey_id}}</td>-->
+                        <td width="16%">
+                            <a href="{{ response.pdf }}" target="_blank">
+                                <get_responses?id={{ response._id }}">{{ response.pdf }}</td>
+                       <td width="16%">
+                           <a href="{{ response.img }}" target="_blank">
+                               <get_responses?id={{ response._id }}">{{ response.img }}</td>
+
+
+                       <td width="8%"><get_responses?id={{ response._id }}">{{ response.ques_description1 }}</td>
+                       <td width="8%"><get_responses?id={{ response._id }}">{{ response.ques_description2 }}</td>
+                       <td width="8%"><get_responses?id={{ response._id }}">{{ response.ques_description3 }}</td>
+                       <td width="8%"><get_responses?id={{ response._id }}">{{ response.ques_description4 }}</td>
+                    </tr>
+
+                </tbody>
+                {% endfor %}
+            </table>
+
+
+
+        </div>
+    </center><br><br>
+</div>
+{% else %}
+<p style="color: red"> You still didn't set your Email, do it
+    <a href="{{ url_for('signin') }}">here</a></p>
+
+{% include 'user/session.html' %}
+
+{% endif %}
+    </p>
+{% endblock %}

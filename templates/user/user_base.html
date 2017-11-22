@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %} - WEBAPP</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href='https://fonts.googleapis.com/css?family=RobotoDraft' rel='stylesheet' type='text/css'>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+        <link rel="icon" href="{{ url_for('static', filename='img/favicon.png') }}">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
+        <link rel="icon" href="{{ url_for('static', filename='img/images.jpg') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/materialize.min.css') }}">
+        <script href="{{ url_for('static', filename='js/js.js') }}"></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <style>
+            .panel-resizable {resize: vertical; overflow: auto }
+        </style>
+
+      {% block head %}{% endblock %}
+  </head>
+
+  <!--<body background ="./img/bg.jpg">-->
+  <body>
+
+
+  <!---------------------------- NAVIGATION BAR BEGINS ---------------------------->
+<!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+    <li><a href="#!">item</a></li>
+    <li><a href="#!">item</a></li>
+    <li><a href="#!">item</a></li>
+    <li class="divider"></li>
+
+    {% if session['name'] %}
+        <li><a href="{{ url_for('clearsession') }}">LOGOUT</a></li>
+    {% else %}
+        <li><a href="/user/signup">SIGN UP</a></li>
+        <li><a href="/user">SIGN IN</a></li>{% endif %}
+</ul>
+
+<ul id="dropdown2" class="dropdown-content">
+    <li><a href="#!">item</a></li>
+    <li><a href="#!">item</a></li>
+    <li><a href="#!">item</a></li>
+    <li class="divider"></li>
+
+    {% if session['name'] %}
+
+        <li><a href="{{ url_for('clearsession') }}">LOGOUT</a></li>
+    {% else %}
+        <li><a href="/user/signup">SIGN UP</a></li>
+        <li><a href="/user">SIGN IN</a></li>{% endif %}
+</ul>
+
+<div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/user" class="brand-logo">SURVEY WORLD</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse">
+                <i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="/user/get_surveys">SURVEY</a></li>
+                    <li><a href="/user/get_responses">SURVEY RESPONSE</a></li>
+                    <li><a href="/user/create_survey">CREATE SURVEY</a></li>
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown2">{{session['name']}}
+                        <i class="material-icons right">arrow_drop_down</i></a></li>
+                </ul>
+
+                <!--<li><a href="/user/chart">GRAPH</a></li>-->
+
+                <ul class="side-nav" id="mobile-demo">
+                    <li><a href="/user/get_surveys">SURVEY</a></li>
+                    <li><a href="/user/get_responses">SURVEY RESPONSE</a></li>
+                    <li><a href="/user/create_survey">CREATE SURVEY</a></li>
+                        <li><a class="dropdown-button" href="#!" data-activates="dropdown1">{{session['name']}}
+                            <i class="material-icons right">arrow_drop_down</i></a></li>
+                </ul>
+        </div>
+    </nav>
+</div>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+      <script>
+        $(".button-collapse").sideNav();
+      </script>
+
+  <!----------------------------- NAVIGATION BAR ENDS ----------------------------->
+
+
+                   {% block content %}{% endblock %}
+
+
+  <!----------------------------- FOOTER ----------------------------->
+    <footer class="page-footer">
+        <div class="footer-copyright">
+            <div class="container">
+                <center>
+    &copy; Copyright 2017 by <a href="http://www.weavebytes.com/wbmain/index.php">weavebytes, Inc.</a>.
+                </center>
+                <!--<a class="grey-text text-lighten-4 right" href="#!">More </a>-->
+            </div>
+        </div>
+    </footer>
+    </body>
+</html>
