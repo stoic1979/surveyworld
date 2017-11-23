@@ -9,7 +9,9 @@
 
                         <form class="form-signin"  action="/user/login" method="post">
                         <input type="email" class="form-control" style="text-align: center"  placeholder="Email" name="email" required autofocus >
-                        <input type="password" class="form-control" style="text-align: center"  placeholder="Password" name="password" required>
+                        <input type="password" class="form-control" style="text-align: center"  placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+                                        title="At least one number, one lowercase and one uppercase letterand at least six characters e.g. aA1qwe"
+                                        name="password" required>
 
                         <button class="btn waves-effect waves-light" type="submit" name="action">Signin <i class="material-icons right">send</i></button>
 

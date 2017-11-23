@@ -3,9 +3,6 @@
 {% block head %}
   {{ super() }}
 
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/table_style.css') }}">
-
-
 {% endblock %}
 {% block content %}
 
@@ -26,9 +23,9 @@
             <table id="myTable">
                 <thead >
                     <tr>
-                        <td>LIST OF SURVEY</td>
+                        <b>LIST OF SURVEY</b>
                     </tr>
-                </thead>
+                </thead><br>
 
         {% for response in data %}
                 <tbody>

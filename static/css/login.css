@@ -73,3 +73,10 @@
     display: block;
     margin-top: 10px;
 }
+input:invalid {
+    border-color: red;
+}
+input,
+input:valid {
+    border-color: #ccc;
+}

@@ -18,10 +18,18 @@
                                 alt="">
 
                             <form class="form-signin" action="/user/add_user" method="post">
-                                <input type="text" class="form-control" placeholder="Username" style="text-align: center"   name="user" required autofocus >
-                                <input type="text" class="form-control" placeholder="Contact" style="text-align: center"  name="contact" required autofocus >
-                                <input type="email" class="form-control" placeholder="Email" style="text-align: center"  name="email" required autofocus >
-                                <input type="password" class="form-control" placeholder="Password" style="text-align: center"  name="password" required >
+
+                                <input type="text" class="form-control" placeholder="Username" style="text-align: center"   name="user" pattern="[a-z]{2,15}"
+                                       title="Username should only contain lowercase letters and minimum 2 letters. e.g. john" required autofocus >
+
+                                <input type="text" class="form-control" placeholder="Contact" style="text-align: center"  name="contact" pattern="[7,8,9][0-9]{9}"
+                                       title="Contact should only contain start with 7,8,9. e.g. 8045261520" required autofocus >
+
+                                <input type="email" class="form-control" placeholder="Email" style="text-align: center" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                       title="e.g. abc@gmail.com" name="email" required autofocus >
+
+                                <input type="password" class="form-control" placeholder="Password" style="text-align: center" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+                                        title="At least one number, one lowercase and one uppercase letterand at least six characters e.g. aA1qwe" name="password" required >
 
                                 <p style="color:gray;">For security perpose:</p>
                                 <select name="question" class="form-control" required="" required autofocus>
@@ -32,7 +40,8 @@
                                     <option value="Choose your Security Question">Choose your Security Question</option>
                                 </select>
 
-                                <input type="text" class="form-control" placeholder="Security Question Answer" style="text-align: center"  name="answer" required autofocus ><br>
+                                <input type="text" class="form-control" placeholder="Security Question Answer" style="text-align: center"  pattern="[a-z]{2,15}"
+                                       title="Username should only contain lowercase letters and minimum 2 letters. e.g. john" name="answer" required autofocus ><br>
 
                                 <button class="btn waves-effect waves-light" type="submit" name="action">Signup <i class="material-icons right">send</i></button>
 

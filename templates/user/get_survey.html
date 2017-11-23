@@ -2,7 +2,6 @@
 {% block title %}Work Page{% endblock %}
 {% block head %}
   {{ super() }}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/table_style.css') }}">
 {% endblock %}
 {% block content %}
 
@@ -22,11 +21,11 @@
                 </form><br><br>
 
                 <table id="myTable">
-                    <thead >
-                        <tr>
-                            <td>LIST OF SURVEY</td>
-                        </tr>
-                    </thead>
+                <thead >
+                    <tr>
+                        <b>LIST OF SURVEY</b>
+                    </tr>
+                </thead><br>
 
         {% for survey in surveys %}
 
