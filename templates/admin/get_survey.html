@@ -8,11 +8,18 @@
 
 <p class="important">
 
-{% if session['name'] %}
+{% if session['email'] %}
 
-<div id="login" class="span3 well well-large offset4">
     <center>
-        <h4><p style="color:blue; ">USER SURVEY</p></h4><br>
+<div class="container">
+    <div class="panel panel-info">
+
+
+    <!--stat-->
+
+        <div class="panel-heading">USER SURVEY</div>
+            <div class="panel-body panel-resizable">
+
 
             <table class="table table-bordered">
                 <thead>
@@ -43,7 +50,7 @@
                 {% endfor %}
             </table>
     </center>
-</div>
+
 
 
 {% else %}
@@ -54,6 +61,7 @@
         {% include 'admin/session.html' %}
 
     {% endif %}
+</div></div></div>
 </p>
 
 {% endblock %}

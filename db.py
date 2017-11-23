@@ -19,14 +19,14 @@ class Mdb:
 
     def __init__(self):
         # local db
-        # conn_str = "mongodb://%s:%s@%s:%d/%s" \
-        #      % (DB_USER, DB_PASS, DB_HOST, DB_PORT, AUTH_DB_NAME)
+        conn_str = "mongodb://%s:%s@%s:%d/%s" \
+             % (DB_USER, DB_PASS, DB_HOST, DB_PORT, AUTH_DB_NAME)
 
         # mlab db
         conn_str = "mongodb://surveyworlduser:surveyworldpass@ds115436.mlab.com:15436/surveyworld"
         client = MongoClient(conn_str)
-        # self.db = client['heroku_188g0kct']
         self.db = client['surveyworld'] # local db
+        
 
 #############################################
 #                                           #
@@ -42,6 +42,20 @@ class Mdb:
                 name = data['name']
                 email = data['email']
         return name
+
+#############################################
+#                                           #
+#        GET NAME ACCORDING TO EMAIL        #
+#                                           #
+#############################################
+    def get_admin_name(self, email):
+        result = self.db.admin.find({'email': email})
+
+        email = ''
+        if result:
+            for data in result:
+                email = data['email']
+        return email
 
 ##############################################
 #                                            #

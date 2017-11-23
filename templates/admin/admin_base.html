@@ -1,60 +1,105 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>{% block title %}{% endblock %} - WEBAPP</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
-    <link href='https://fonts.googleapis.com/css?family=RobotoDraft' rel='stylesheet' type='text/css'>
-    <link rel="icon" href="{{ url_for('static', filename='img/favicon.png') }}">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <head>
+        <title>{% block title %}{% endblock %} - SURVEY WORLD</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href='https://fonts.googleapis.com/css?family=RobotoDraft' rel='stylesheet' type='text/css'>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+        <link rel="icon" href="{{ url_for('static', filename='img/favicon.png') }}">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 
-    <style>
-    td {font-size: 16px; text-transform: uppercase; letter-spacing: 0px; color: black; text-align: center;}
-    th {font-size: 18px; text-transform: uppercase; letter-spacing: 0px; color: black; text-align: center;}
-    </style>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
+        <link rel="icon" href="{{ url_for('static', filename='img/images.jpg') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/materialize.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/materialize.css') }}">
+        <script href="{{ url_for('static', filename='js/js.js') }}"></script>
 
-    {% block head %}{% endblock %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <style>
+            .panel-resizable {resize: vertical; overflow: auto }
+        </style>
+        <style>
+    * {
+      font-family: Serif;
+    }
+</style>
+      {% block head %}{% endblock %}
   </head>
 
+  <!--<body background ="./img/bg.jpg">-->
   <body>
 
+
   <!---------------------------- NAVIGATION BAR BEGINS ---------------------------->
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
 
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+<!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+    <!--<li><a href="#!">item</a></li>-->
+    <!--<li><a href="#!">item</a></li>-->
+    <!--<li><a href="#!">item</a></li>-->
+    <li class="divider"></li>
 
-                <a class="navbar-brand" href="/admin">WEBAPP</a>
-            </div>
+    {% if session['email'] %}
+        <li><a href="{{ url_for('clearsession1') }}">LOGOUT</a></li>
+    {% else %}
+        <li><a href="/admin">SIGN IN</a></li>{% endif %}
+</ul>
 
-            <div class="collapse navbar-collapse" id="myNavbar">
+<ul id="dropdown2" class="dropdown-content">
+    <!--<li><a href="#!">item</a></li>-->
+    <!--<li><a href="#!">item</a></li>-->
+    <!--<li><a href="#!">item</a></li>-->
+    <li class="divider"></li>
 
-                <ul class="nav navbar-nav">
+    {% if session['email'] %}
+        <li><a href="{{ url_for('clearsession1') }}">LOGOUT</a></li>
+    {% else %}
+        <li><a href="/admin">SIGN IN</a></li>{% endif %}
+</ul>
+
+<div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/admin" class="brand-logo">SURVEY WORLD</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse">
+                <i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
                     <li><a href="/admin/get_users">USERS</a></li>
                     <li><a href="/admin/get_surveys"> SURVEYS</a></li>
                     <li><a href="/admin/get_responses">SURVEY RESPONSES</a></li>
+                    <li><a class="dropdown-button" href="#!" data-activates="dropdown2">{{session['email']}}
+                        <i class="material-icons right">arrow_drop_down</i></a></li>
                 </ul>
 
-                <ul class="nav navbar-nav navbar-right">
-                    {% if session['name'] %}
-                    <li><a href="{{ url_for('clearsession1') }}"><span class="glyphicon glyphicon-log-out">&nbsp;</span>Logout</a></li>
-                    {% else %}
-                    <li><a href="/admin"><span class="glyphicon glyphicon-log-in"></span> Signin</a></li>{% endif %}
+                <!--<li><a href="/user/chart">GRAPH</a></li>-->
+
+                <ul class="side-nav" id="mobile-demo">
+                    <li><a href="/admin/get_users">USERS</a></li>
+                    <li><a href="/admin/get_surveys"> SURVEYS</a></li>
+                    <li><a href="/admin/get_responses">SURVEY RESPONSES</a></li>
+                        <li><a class="dropdown-button" href="#!" data-activates="dropdown1">{{session['email']}}
+                            <i class="material-icons right">arrow_drop_down</i></a></li>
                 </ul>
-            </div>
         </div>
     </nav>
+</div>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+      <script>
+        $(".button-collapse").sideNav();
+      </script>
+
   <!----------------------------- NAVIGATION BAR ENDS ----------------------------->
 
 
@@ -62,17 +107,15 @@
 
 
   <!----------------------------- FOOTER ----------------------------->
-    <div id="footer">
-        {% block footer %}
-        <center>
-
-        &copy; Copyright 2017 by <a href="#">Webapp, Inc.</a>.
-
-        </center>
-      {% endblock %}
-    </div>
-
-  </body>
+    <footer class="page-footer">
+        <div class="footer-copyright">
+            <div class="container">
+                <center>
+    &copy; Copyright 2017 by <a href="http://www.weavebytes.com/wbmain/index.php">weavebytes, Inc.</a>.
+                </center>
+                <!--<a class="grey-text text-lighten-4 right" href="#!">More </a>-->
+            </div>
+        </div>
+    </footer>
+    </body>
 </html>
-
-

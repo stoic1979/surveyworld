@@ -217,7 +217,7 @@ def add_user():
 
         check = mdb.check_email(email)
         if check:
-            # print"This Email Already Used"
+            print"This Email Already Used"
             templateData = {'title': 'Signup Page'}
             return render_template('user/signup.html', **templateData)
 
@@ -764,8 +764,8 @@ def admin_login():
         password = request.form['password']
 
         if mdb.admin_exists(email, password):
-            name = mdb.get_name(email)
-            session['name'] = name
+            email = mdb.get_admin_name(email)
+            session['email'] = email
 
             expiry = datetime.datetime.utcnow() + datetime.\
                 timedelta(minutes=30)

@@ -7,12 +7,17 @@
 {% block content %}
 
 <p class="important">
-    {% if session['name'] %}
 
-    <div id="login" class="span3 well well-large offset4">
-        <center>
+{% if session['email'] %}
+    <center>
+<div class="container">
+    <div class="panel panel-info">
 
-            <h4><p style="color:blue;">USERS</p></h4><br>
+
+    <!--stat-->
+
+        <div class="panel-heading">USERS</div>
+            <div class="panel-body panel-resizable">
             <div class="container">
                 <!-- Modal -->
                 <div class="modal fade" id="myModal" role="dialog">
@@ -27,8 +32,6 @@
                     </div>
                 </div>
             </div>
-
-
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -51,7 +54,6 @@
             {% endfor %}
 
         </table>
-
         {% for user in users %}
 
         <div class="modal fade" id="exampleModal" value="{{user._id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -70,46 +72,67 @@
 
                             <div class="form-group">
                                 <label class="control-label col-sm-2">Name:</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-9">
                                     <input type="leble" class="form-control" id="email" value="{{ user.name }}" disabled/>
                                 </div>
+                                <div class="col-sm-1"></div>
                             </div>
 
 
                             <div class="form-group">
                                 <label class="control-label col-sm-2">Email:</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-9">
                                     <input type="text" class="form-control" value="{{ user.email }}" disabled>
                                 </div>
+                                 <div class="col-sm-1"></div>
                             </div>
 
 
                             <div class="form-group">
                                 <label class="control-label col-sm-2">Contact:</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-9">
                                     <input type="leble" class="form-control" value="{{ user.contact }}" disabled/>
                                 </div>
+                                 <div class="col-sm-1"></div>
                             </div>
 
 
                             <div class="form-group">
                                 <label class="control-label col-sm-2">Password:</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-9">
                                     <input type="leble" class="form-control"value="{{ user.password }}" disabled/>
                                 </div>
+                                 <div class="col-sm-1"></div>
                             </div>
 
 
                             <div class="form-group">
                                 <label class="control-label col-sm-2">Time:</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-9">
                                     <input type="leble" class="form-control" id="email" value="{{ user.creation_date }}" disabled/>
                                 </div>
+                                 <div class="col-sm-1"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Security Question:</label>
+                                <div class="col-sm-9">
+                                    <input type="leble" class="form-control" id="email" value="{{ user.question }}" disabled/>
+                                </div>
+                                 <div class="col-sm-1"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Answer:</label>
+                                <div class="col-sm-9">
+                                    <input type="leble" class="form-control" id="email" value="{{ user.answer }}" disabled/>
+                                </div>
+                                 <div class="col-sm-1"></div>
                             </div>
 
 
                             <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
+                                <div class="col-sm-offset-2 col-sm-9">
                                     <button type="submit" class="btn btn-default"> Not Verify</button>
                                 <button type="submit" class="btn btn-default">Verify</button>
                                 </div>
@@ -120,20 +143,22 @@
                 </div>
             </div>
         </div>
-        </center>
 
         {% endfor %}
 
 
+            {% else %}
 
-        {% else %}
 
-        <p style="color: red"> You still didn't set your Email, do it
-        <a href="{{ url_for('admin') }}">here</a></p>
+<p style="color: red"> You still didn't set your Email, do it
+    <a href="{{ url_for('admin') }}">here</a></p>
 
-        {% include 'admin/session.html' %}
-
-    {% endif %}
+{% include 'admin/session.html' %}
+{% endif %}
+            </div>
+        </div>
+    </div>
+</center>
 </p>
 
 {% endblock %}

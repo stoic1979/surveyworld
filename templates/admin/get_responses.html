@@ -23,14 +23,20 @@
 {% block content %} 
 
 <p class="important">
-    {% if session['name'] %}
+    {% if session['email'] %}
+    <center>
+<div class="container">
+    <div class="panel panel-info">
 
-    <div id="login" class="span3 well well-large offset4">
-        <center>
-            <h4><p style="color:blue; ">SURVEY RESPONSES</p></h4><br>
 
-            <!--<table class="table table-bordered">-->
-            <table>
+    <!--stat-->
+
+        <div class="panel-heading">USER SURVEY</div>
+            <div class="panel-body panel-resizable">
+
+
+            <table class="table table-bordered">
+            <!--<table>-->
                 <thead>
                     <tr>
                         <th width="18.6%">User Id</th>
@@ -59,7 +65,7 @@
                 {% endfor %}
             </table>
         </center>
-    </div>
+
 {% else %}
 
         <p style="color: red"> You still didn't set your Email, do it
@@ -68,6 +74,7 @@
         {% include 'admin/session.html' %}
 
     {% endif %}
+    </div>    </div>    </div>
 </p>
 
 {% endblock %}

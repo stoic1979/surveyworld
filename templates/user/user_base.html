@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{% block title %}{% endblock %} - WEBAPP</title>
+        <title>{% block title %}{% endblock %} - SURVEY WORLD</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -21,11 +21,14 @@
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
         <link rel="icon" href="{{ url_for('static', filename='img/images.jpg') }}">
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/materialize.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/materialize.css') }}">
         <script href="{{ url_for('static', filename='js/js.js') }}"></script>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <style>
             .panel-resizable {resize: vertical; overflow: auto }
+            * { font-family: Serif; }
+
         </style>
 
       {% block head %}{% endblock %}
@@ -38,9 +41,9 @@
   <!---------------------------- NAVIGATION BAR BEGINS ---------------------------->
 <!-- Dropdown Structure -->
 <ul id="dropdown1" class="dropdown-content">
-    <li><a href="#!">item</a></li>
-    <li><a href="#!">item</a></li>
-    <li><a href="#!">item</a></li>
+    <!--<li><a href="#!">item</a></li>-->
+    <!--<li><a href="#!">item</a></li>-->
+    <!--<li><a href="#!">item</a></li>-->
     <li class="divider"></li>
 
     {% if session['name'] %}
@@ -51,9 +54,9 @@
 </ul>
 
 <ul id="dropdown2" class="dropdown-content">
-    <li><a href="#!">item</a></li>
-    <li><a href="#!">item</a></li>
-    <li><a href="#!">item</a></li>
+    <!--<li><a href="#!">item</a></li>-->
+    <!--<li><a href="#!">item</a></li>-->
+    <!--<li><a href="#!">item</a></li>-->
     <li class="divider"></li>
 
     {% if session['name'] %}
