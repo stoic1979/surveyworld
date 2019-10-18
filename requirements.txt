@@ -13,7 +13,7 @@ Cython==0.26
 enum34==1.1.6
 Eve==0.7.4
 Events==0.2.2
-Flask==0.12
+Flask==1.0
 Flask-Admin==1.5.0
 Flask-API==0.7.1
 Flask-Bcrypt==0.7.1
